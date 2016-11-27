@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" strict="true" monitorInterval="30">
+
+	<Properties>
+		<Property name="filename">/home/sarp/Desktop/spring-boot-example.log</Property>
+		<Property name="defaultpattern">logdate=(%d{ISO8601}) thread=(%thread)) level=(%level) loggerclass=(%logger{36}) message=(%msg)%n</Property>
+	</Properties>
+	<Filter type="ThresholdFilter" level="trace"/>
+
+	<Appenders>
+		<Appender type="Console" name="STDOUT">
+			<Layout type="PatternLayout" pattern="${defaultpattern}"/>
+		</Appender>
+		<Appender type="File" name="File" fileName="${filename}">
+			<Layout type="PatternLayout" pattern="${defaultpattern}" />
+		</Appender>
+	        <Socket name="socket" host="0.0.0.0" port="9999" reconnectionDelayMillis="5000">
+			<Layout type="PatternLayout" pattern="${defaultpattern}" />	
+		</Socket>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="com.sarp.elk" level="info" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+			<AppenderRef ref="File"/>
+			<AppenderRef ref="socket"/>
+		</Logger>
+		<Root level="warn">
+			<AppenderRef ref="STDOUT"/>
+			<AppenderRef ref="File"/>
+			<AppenderRef ref="socket"/>
+		</Root>
+	</Loggers>
+
+</Configuration>
