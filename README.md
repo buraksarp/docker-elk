@@ -19,19 +19,15 @@ Running Containers with the docker-compose
 To run these containers:
 
     $ docker-compose up
-
-To view the Kibana UI: [http://localhost:5601](http://localhost:5601)
-
-Running Spring-Boot app to view logs on the Kibana
+    
+Consuming Rest Service
 ---------------------
-To build spring-boot app's container
+To consume SpringBoot app user service:
 
-    $ cd ../springboot-elk
-    $ docker build -t spring-boot/springboot-elk .
+    $ curl http://localhost:8080/user/{userid}
+    
+To view generated logs on Kibana UI: [http://localhost:5601](http://localhost:5601)
 
-To run spring-boot app's container
-
-    $ docker run -ti spring-boot/springboot-elk
 
 
 

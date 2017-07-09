@@ -14,7 +14,7 @@
 		<Appender type="File" name="File" fileName="${filename}">
 			<Layout type="PatternLayout" pattern="${defaultpattern}" />
 		</Appender>
-	        <Socket name="socket" host="0.0.0.0" port="9999" reconnectionDelayMillis="5000">
+	        <Socket name="socket" host="logstash" port="9999" reconnectionDelayMillis="5000">
 			<Layout type="PatternLayout" pattern="${defaultpattern}" />	
 		</Socket>
 	</Appenders>
