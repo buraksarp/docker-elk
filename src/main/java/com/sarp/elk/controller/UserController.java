@@ -14,17 +14,17 @@ import com.sarp.elk.domain.User;
 
 @RestController
 public class UserController {
-	
-	private final Logger logger = LogManager.getLogger(this.getClass());
+
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
     @RequestMapping("/user/{id}")
     public ResponseEntity<User> getUserById(@PathVariable(required = true) final Long id) {
-    	logger.info("Request with the id =[" + id + "]");
+
+        logger.info("Request with the id =[" + id + "]");
+
         final User user = new User(id, "firstname", "surname", new GregorianCalendar());
-        logger.info(String.format("id=[%s] firstname=[%s] surname=[%s]",
-                user.getId(),
-                user.getFirstname(),
-                user.getSurname()));
+        logger.info(String.format("id=[%s] firstname=[%s] surname=[%s]", user.getId(), user.getFirstname(), user.getSurname()));
+
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

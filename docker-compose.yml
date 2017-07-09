@@ -9,7 +9,7 @@ services:
       - logstash
 
   elasticsearch:
-    build: elasticsearch/
+    build: elk/elasticsearch/
     container_name: elasticsearch
     ports:
       - "9200:9200"
@@ -18,20 +18,21 @@ services:
       ES_JAVA_OPTS: "-Xms1g -Xmx1g"
       
   logstash:
-    build: logstash/
+    build: elk/logstash/
     container_name: logstash
     command: -f /etc/logstash/conf.d/
     volumes:
-      - ./logstash/config:/etc/logstash/conf.d
+      - ./elk/logstash/config:/etc/logstash/conf.d
     ports:
       - "9999:9999"
     links:
       - elasticsearch
+
   kibana:
-    build: kibana/
+    build: elk/kibana/
     container_name: kibana
     volumes:
-      - ./kibana/config/:/opt/kibana/config/
+      - ./elk/kibana/config/:/opt/kibana/config/
     ports:
       - "5601:5601"
     links:
